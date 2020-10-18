@@ -4,3 +4,4 @@
 [submodule "cli"]
 	path = cli
 	url = https://github.com/zipreport/zipreport-cli.git
+	branch = master

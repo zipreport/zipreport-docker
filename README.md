@@ -4,16 +4,6 @@ Ready-to-use docker image recipe that includes zipreport-server and zipreport-cl
 
 Don't forget to checkout with "--recurse-submodules" to clone the related source repositories!
 
-
-## Security warning
-
-This dockerized zipreport-server uses zipreport-cli with sanboxing disabled (--no-sandbox), due to docker limitations. This is a pontential security risk,
-specially if rendering external resources. Be sure to understand the implications of this for your own particular setup.
-
-A more secure way of running zipreport-server and zipreport-cli would be to have a dedicated VM, where the
-zipreport-cli process could be executed in sandbox mode.
-
-
 ## Available environment variables
 
 |Name|Description|
@@ -24,7 +14,36 @@ zipreport-cli process could be executed in sandbox mode.
 
 ## Build & Run
 
-```shell script
-$ docker build -t zipreport .
-$ docker run -d -p 6543:6543 zipreport
+
+This docker image uses seccomp to allow chromium to run sandboxed within docker. This is possible thanks to 
+[Jessie Frazelle seccomp profile for Chrome](https://github.com/jessfraz/dotfiles/blob/master/etc/docker/seccomp/chrome.json),
+under MIT license.
+
+
+Build and start the container directly:
+
+```shell
+$ docker build . --tag zipreport:latest
+$ docker container run --rm --security-opt seccomp=$(pwd)/seccomp/chrome.json zipreport:latest
 ```
+
+Using docker-compose:
+```yaml
+version: "3.8"
+services:
+  zipreport:
+    image: zipreport:latest
+    environment:
+      - API_KEY="VerySecretKey" 
+    security_opt:
+      - seccomp:seccomp/chrome.json
+```
+
+
+Please note, security_opt is currently ignored in swarm mode (docker stack deploy)
+
+## License
+
+This repository is licensed under MIT license.
+The file seccomp/chome.json is licensed under MIT license by Jessie Frazelle, and was taken from
+[Jessie Frazelle dotfiles repository](https://github.com/jessfraz/dotfiles)

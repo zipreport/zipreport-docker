@@ -26,8 +26,8 @@ libdbus-1-3 libexpat1 libfontconfig1 libgcc1 libgconf-2-4 libgdk-pixbuf2.0-0 \
 libglib2.0-0 libgtk-3-0 libnspr4 libnss3 libpango-1.0-0 libpangocairo-1.0-0 libdrm2 \
 xvfb libstdc++6 libx11-6 libx11-xcb1 libxcb1 libxcomposite1 libxcursor1 libgbm-dev \
 libxdamage1 libxext6 libxfixes3 libxi6 libxrandr2 libxrender1 libxss1 libxtst6 \
-fonts-freefont-ttf fonts-liberation
-    
+fonts-freefont-ttf fonts-liberation fonts-noto-color-emoji fonts-wqy-zenhei
+       
 # Clean up APT when done.
 RUN apt-get clean \
     && apt autoremove -y \
@@ -53,6 +53,8 @@ RUN npm run build
 RUN mkdir /opt/zptcli
 RUN cp -r build/zpt-cli-linux-x64/* /opt/zptcli/
 RUN chown -R "$USER" /opt/zptcli
+RUN chmod 4755 /opt/zptcli/chrome-sandbox
+RUN chown root:root /opt/zptcli/chrome-sandbox
 
 # cleanup
 RUN rm -rf /src/*

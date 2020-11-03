@@ -2,7 +2,7 @@
 
 ZPT_PATH="/opt/zptserver/"
 CLI_PATH="/opt/zptcli/zpt-cli"
-ZPT_OPTS="-addr=0.0.0.0 -storage=/tmp/zpt/ -cli=${CLI_PATH} -no-sandbox -no-gpu"
+ZPT_OPTS="-addr=0.0.0.0 -storage=/tmp/zpt/ -cli=${CLI_PATH} -no-gpu"
 
 # use ssl if not disabled
 if [ -z "$NOSSL" ]; then

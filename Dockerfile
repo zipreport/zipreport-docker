@@ -53,6 +53,8 @@ RUN npm run build
 RUN mkdir /opt/zptcli
 RUN cp -r build/zpt-cli-linux-x64/* /opt/zptcli/
 RUN chown -R "$USER" /opt/zptcli
+RUN chmod 4755 /opt/zptcli/chrome-sandbox
+RUN chown root:root /opt/zptcli/chrome-sandbox
 
 # cleanup
 RUN rm -rf /src/*

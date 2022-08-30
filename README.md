@@ -1,8 +1,7 @@
 # Zipreport-server docker image
 
 Ready-to-use docker image recipe that includes zipreport-server and zipreport-cli, based on Debian (buster).
-
-Don't forget to checkout with "--recurse-submodules" to clone the related source repositories!
+Both zipreport-server and zipreport-cli are built from their respective master branches.
 
 ## Available environment variables
 
@@ -38,7 +37,6 @@ services:
     security_opt:
       - seccomp:seccomp/chrome.json
 ```
-
 
 Please note, security_opt is currently ignored in swarm mode (docker stack deploy)
 

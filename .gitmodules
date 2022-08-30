@@ -1,8 +1,0 @@
-[submodule "cli"]
-	path = cli
-	url = https://github.com/zipreport/zipreport-cli.git
-	branch = master
-[submodule "server"]
-	path = server
-	url = https://github.com/zipreport/zipreport-server.git
-	branch = master

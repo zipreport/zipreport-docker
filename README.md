@@ -1,8 +1,10 @@
 # Zipreport-server docker image
 
 
-***NOTICE** This repository is deprecated; please use zipreport-server v2.0.0 or later.
+## **ARCHIVAL NOTE**
+This repository is deprecated; please use zipreport-server v2.0.0 or later.
 
+---
 
 Ready-to-use docker image recipe that includes zipreport-server and zipreport-cli, based on Debian (buster).
 Both zipreport-server and zipreport-cli are built from their respective master branches.
